@@ -15,7 +15,7 @@ photosRef.on("child_added", function(snap) {
     console.log('else')
     $('.results > .row:last').append(htmlDisplay(snap.val(), snap.key()));
   }
-
+  $('.materialboxed').materialbox();
   // $('.btn-info' + ', .' + snap.key()).click(function() {
   //   photosRef.child(snap.key()).update({ likes: 2 });
   // });
@@ -60,5 +60,4 @@ $(document).ready(function(){
   // Materialize initalization
   $('.modal-trigger').leanModal();
   $('select').material_select();
-  $('.materialboxed').materialbox();
 });
