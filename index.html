@@ -12,54 +12,61 @@
 
 	<div class="container">
 
-	  <h4>CatPhotoApp</h1>
+		<h4>CatPhotoApp</h1>
 
-		<div class="row">
-	    <form class="col s12">
-	      <div class="row">
-	        <div class="input-field col s6">
-	          <input placeholder="Enter Title" id="title" type="text" required>
-	          <label for="title">Title</label>
-	        </div>
-				</div>
-				<div class="row">
-	        <div class="input-field col s6">
-	          <input placeholder="Enter URL" id="url" type="text" required>
-	          <label for="url">Cat Photo URL</label>
-	        </div>
-	      </div>
-	      <div class="row">
-					<div class="col s6" id="location">
-						<p>
-				      <input name="location" type="radio" id="indoor" checked/>
-				      <label for="indoor">Indoor</label>
-				    </p>
-				    <p>
-				      <input name="location" type="radio" id="outdoor" />
-				      <label for="outdoor">Outdoor</label>
-				    </p>
-	        </div>
-				</div>
-				<div class="row">
-					<div class="col s6">
-						<label>Browser Select</label>
-				    <select class="browser-default">
-				      <option value="Loving">Loving</option>
-				      <option value="Lazy">Lazy</option>
-				      <option value="Crazy">Crazy</option>
-				    </select>
-				  </div>
-	      </div>
-	      <div class="row">
-					<button class="btn waves-effect waves-green green lighten-1 submit" type="submit" name="action">
-				    <i class="fa fa-send"></i>
-						&nbsp;Submit
-				  </button>
-	      </div>
-	    </form>
-	  </div>
+		<!-- Add Cat Modal Trigger -->
+		<a class="modal-trigger waves-effect waves-light btn" href="#addCatModal">Add Cat Photo</a>
 
-	  <div class="results"></div>
+		<!-- Add Cat Modal Structure -->
+		<div id="addCatModal" class="modal">
+			<div class="modal-content">
+				<h4>Add Cat Photo</h4>
+				<i>“Meow” means “woof” in cat.</i>
+				<form>
+					<div class="row">
+						<div class="input-field col s12">
+							<input placeholder="Enter Title" id="title" type="text" required>
+							<label for="title" data-error="wrong" data-success="right">Title</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<input placeholder="Enter URL" id="url" type="text" required>
+							<label for="url" data-error="wrong" data-success="right">Cat Photo URL</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col l6 m6 s12">
+							<select>
+								<option value="" disabled selected>Choose your option</option>
+								<option value="Loving">Loving</option>
+								<option value="Lazy">Lazy</option>
+								<option value="Crazy">Crazy</option>
+							</select>
+							<label>Browser Select</label>
+						</div>
+						<div class="col l6 m6 s12" id="location">
+							<p>
+								<input class="with-gap" name="location" type="radio" id="indoor" checked/>
+								<label for="indoor">Indoor</label>
+							</p>
+							<p>
+								<input class="with-gap" name="location" type="radio" id="outdoor" />
+								<label for="outdoor">Outdoor</label>
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<button class="btn waves-effect waves-green green lighten-1 submit" type="submit" name="action">
+							<i class="fa fa-send"></i>
+							&nbsp;Submit
+						</button>
+					</div>
+				</form>  
+			</div>
+		</div>
+
+		<div class="results"></div>
 
 	</div><!-- .container -->
 
