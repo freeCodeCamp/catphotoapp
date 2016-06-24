@@ -1,8 +1,21 @@
 var ref = new Firebase("https://catphotoapp.firebaseio.com/");
 var photosRef = ref.child('photos')
 
+var count = 0; // Keeping track of number of images
+
 photosRef.on("child_added", function(snap) {
-  $('.results').append(htmlDisplay(snap.val(), snap.key()));
+  console.log('Snap: ', snap)
+  count++;
+  // Wrapping all divs in groups of four 
+  if (count%4 === 1) {
+    console.log('if')
+    newHTML = '<div class="row">' + htmlDisplay(snap.val(), snap.key()) + '</div>';
+    $('.results').append(newHTML);
+  } else {
+    console.log('else')
+    $('.results > .row:last').append(htmlDisplay(snap.val(), snap.key()));
+  }
+  $('.materialboxed').materialbox();
   // $('.btn-info' + ', .' + snap.key()).click(function() {
   //   photosRef.child(snap.key()).update({ likes: 2 });
   // });
@@ -27,11 +40,10 @@ $('.submit').on("click", function(event) {
   });
 
 function htmlDisplay(photo, id){
-  console.log(photo);
   var html = '';
-  html += '<div class="row"><div class="col s12 m7"><div class="card small">';
+  html += '<div class="col s3 m4 s12"><div class="card">';
     html += '<div class="card-image">';
-      html += '<img src="' + photo.url + '" />';
+      html += '<img class="materialboxed" src="' + photo.url + '" />';
       html += '<span class="card-title">' + photo.title + '</span>';
     html += '</div><div class="card-content">';
       html += '<p>Location: ' + photo.location + '</p>';
@@ -39,6 +51,13 @@ function htmlDisplay(photo, id){
     html += '</div><div class="card-action">';
       html += `<a class="waves-effect waves-light btn"><i class="fa fa-thumbs-up"></i> ${photo.likes}</a>
     <a class="waves-effect waves-light btn ${id}"><i class="fa fa-trash"></i> Delete</a>`;
-  html += '</div></div></div></div>';
+  html += '</div></div></div>';
   return html;
 }
+
+
+$(document).ready(function(){
+  // Materialize initalization
+  $('.modal-trigger').leanModal();
+  $('select').material_select();
+});
