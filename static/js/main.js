@@ -52,34 +52,27 @@ var config = {
 };
 firebase.initializeApp(config);
 
-// firebase.database().ref('photos').on('child_added', function(snapshot) {
-//   // writePhoto(); // only for new
-//   $('.results').append(showData(snapshot));
-//   $('.delete').on('click', function () {
-//     photosRef.remove();
-//   });
-//   snapshot.forEach(function(childSnapshot) {
-//     var key = childSnapshot.key();
-//     // key === "fred"
-//     return true;
-//   });
-// });
-
-
 var photosRef = firebase.database().ref("photos").orderByKey();
+var count = 0; // Keeping track of number of images
+
 photosRef.once("value")
   .then(function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
-      // key will be "ada" the first time and "alan" the second time
-      var key = childSnapshot.key;
-      // childData will be the actual contents of the child
-      var childData = childSnapshot.val();
-      $('.results').append(showData(childData));
+      count++;
+      if (count % 4 === 1) {
+        $('.results').append('<div class="row">' + showData(childSnapshot.val()) + '</div>');
+      } else {
+        $('.results > .row:last').append(showData(childSnapshot.val()));
+      }
+      $('.materialboxed').materialbox();
+      $('.like').click(function() {
+        writeLikes(childSnapshot.val().title);
+      });
+    });
   });
-});
 
-$('.submit').on('click', function () {
-  firebase.database().ref('photos/' + Math.floor(Math.random() * 500)).set({
+$('.submit').click(function () {
+  firebase.database().ref('photos/' + $('#title').val()).set({
     title: $('#title').val(),
     url: $('#url').val(),
     location: $('input[name="location"]:checked').val(),
@@ -88,24 +81,29 @@ $('.submit').on('click', function () {
   });
 });
 
-function writeLikes(likes) {
-  firebase.database().ref('photos/').transaction(function(currentLikes) {
+function writeLikes(title) {
+  firebase.database().ref('photos/' + title + '/likes').transaction(function(currentLikes) {
     return currentLikes + 1;
   });
 }
 
 function showData(photo) {
   var html = '';
-  html += '<div class="row"><div class="col s12 m7"><div class="card">';
+  html += '<div class="col s3 m4 s12"><div class="card">';
     html += '<div class="card-image">';
-      html += '<img src="' + photo.url + '" />';
+      html += '<img class="materialboxed" src="' + photo.url + '" />';
       html += '<span class="card-title">' + photo.title + '</span>';
     html += '</div><div class="card-content">';
       html += '<p>Location: ' + photo.location + '</p>';
       html += '<p>Tags: ' + photo.tags + '</p>';
     html += '</div><div class="card-action">';
-      html += `<a class="waves-effect waves-light btn like"><i class="fa fa-thumbs-up"></i> ${photo.likes}</a>
-    <a class="waves-effect waves-light btn delete"><i class="fa fa-trash"></i> Delete</a>`;
-  html += '</div></div></div></div>';
+      html += `<a class="waves-effect waves-light btn like"><i class="fa fa-thumbs-up"></i> ${photo.likes}</a><a class="waves-effect waves-light btn delete"><i class="fa fa-trash"></i> Delete</a>`;
+  html += '</div></div></div>';
   return html;
 }
+
+$(document).ready(function(){
+  // Materialize initalization
+  $('.modal-trigger').leanModal();
+  $('select').material_select();
+});
