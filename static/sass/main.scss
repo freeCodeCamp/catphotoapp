@@ -1,12 +1,29 @@
-.row {
-	margin-bottom: 10px;
+// navbar
+
+.brand-logo {
+  font-family: "Lobster", cursive;
 }
 
-#location {
-	p {
-		margin: 0;
-	}
+.button-collapse {
+  margin-left: 15px;
 }
+
+// display of photos
+
+.row {
+  margin-bottom: 10px;
+}
+
+.like {
+  margin-right: 3px;
+}
+
+// form for adding photos
+
+#location p {
+  margin: 0;
+}
+
 .submit {
-	margin-top: 10px;
+  margin-left: 10px;
 }

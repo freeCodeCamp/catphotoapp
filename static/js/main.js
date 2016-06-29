@@ -59,13 +59,14 @@ function showData(photo) {
       html += '<p>Location: ' + photo.location + '</p>';
       html += '<p>Tags: ' + photo.tags + '</p>';
     html += '</div><div class="card-action">';
-      html += `<a class="waves-effect waves-light btn like"><i class="fa fa-thumbs-up"></i> ${photo.likes}</a><a class="waves-effect waves-light btn delete"><i class="fa fa-trash"></i> Delete</a>`;
+      html += `<a class="waves-effect waves-light waves-blue blue darken-3 btn like"><i class="fa fa-thumbs-up"></i> ${photo.likes}</a><a class="waves-effect waves-light waves-blue blue darken-3 btn delete"><i class="fa fa-trash"></i> Delete</a>`;
   html += '</div></div></div>';
   return html;
 }
 
 $(document).ready(function(){
   // Materialize initalization
+  $(".button-collapse").sideNav();
   $('.modal-trigger').leanModal();
   $('select').material_select();
 });

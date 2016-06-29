@@ -1,8 +1,17 @@
+.brand-logo {
+  font-family: "Lobster", cursive; }
+
+.button-collapse {
+  margin-left: 15px; }
+
 .row {
   margin-bottom: 10px; }
+
+.like {
+  margin-right: 3px; }
 
 #location p {
   margin: 0; }
 
 .submit {
-  margin-top: 10px; }
+  margin-left: 10px; }

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
 	<title>CatPhotoApp</title>
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lobster">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
@@ -10,11 +11,26 @@
 </head>
 <body>
 
+	<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper blue darken-2">
+				<a href="#" class="brand-logo">&nbsp;&nbsp;&nbsp;CatPhotoApp</a>
+				<a href="#" data-activates="mobile" class="button-collapse"><i class="fa fa-bars"></i></a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><a class="modal-trigger" href="#addCatModal">Add Cat Photo</a></li>
+					<li><a href="#">Sign In</a></li>
+				</ul>
+				<ul class="side-nav" id="mobile">
+					<li><a class="modal-trigger" href="#addCatModal">Add Cat Photo</a></li>
+					<li><a href="#">Sign In</a></li>
+	      </ul>
+			</div>
+		</nav>
+	</div>
+
+	<br>
+
 	<div class="container">
-
-		<h4>CatPhotoApp</h1>
-
-		<a class="modal-trigger waves-effect waves-light btn" href="#addCatModal">Add Cat Photo</a>
 
 		<div id="addCatModal" class="modal">
 			<div class="modal-content">
@@ -49,7 +65,7 @@
 						</div>
 					</div>
 					<div class="row">
-						<button class="btn waves-effect waves-green green lighten-1 submit" type="submit" name="action">
+						<button class="btn waves-effect waves-blue blue darken-1 submit" type="submit" name="action">
 							<i class="fa fa-send"></i>
 							&nbsp;Submit
 						</button>
