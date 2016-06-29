@@ -19,8 +19,12 @@ photosRef.once("value")
         $('.results > .row:last').append(showData(childSnapshot.val()));
       }
       $('.materialboxed').materialbox();
-      $('.like').click(function() {
+      $(`.${childSnapshot.val().title} .like`).click(function() {
         writeLikes(childSnapshot.val().title);
+      });
+
+      $(`.${childSnapshot.val().title} .delete`).click(function() {
+        deletePhoto(childSnapshot.val().title);
       });
     });
   });
@@ -41,9 +45,13 @@ function writeLikes(title) {
   });
 }
 
+function deletePhoto(title) {
+  firebase.database().ref('photos/' + title).remove();
+}
+
 function showData(photo) {
   var html = '';
-  html += '<div class="col s3 m4 s12"><div class="card">';
+  html += '<div class="col s3 m4 s12"><div class="card ' + photo.title + '">';
     html += '<div class="card-image">';
       html += '<img class="materialboxed" src="' + photo.url + '" />';
       html += '<span class="card-title">' + photo.title + '</span>';
