@@ -18,11 +18,9 @@
 				<a href="#" data-activates="mobile" class="button-collapse"><i class="fa fa-bars"></i></a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					<li><a class="modal-trigger" href="#addCatModal">Add Cat Photo</a></li>
-					<li><a href="#">Sign In</a></li>
 				</ul>
 				<ul class="side-nav" id="mobile">
 					<li><a class="modal-trigger" href="#addCatModal">Add Cat Photo</a></li>
-					<li><a href="#">Sign In</a></li>
 	      </ul>
 			</div>
 		</nav>
@@ -50,12 +48,12 @@
 					</div>
 					<div class="row">
 						<div class="input-field col s6">
-							<input placeholder="Enter Tags" id="tags" type="text">
+							<input placeholder="Enter Tags" id="tags" type="text" required>
 							<label for="tags">Tags</label>
 						</div>
 						<div class="col l6 m6 s12" id="location">
 							<p>
-								<input value="Indoor" name="location" type="radio" id="indoor" checked/>
+								<input value="Indoor" name="location" type="radio" id="indoor" required/>
 								<label for="indoor">Indoor</label>
 							</p>
 							<p>
@@ -80,6 +78,7 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/ui/live/0.4/firebase-ui-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/3.0.5/firebase.js"></script>
 	<script src="static/js/main.js"></script>
 </body>
