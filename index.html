@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
 	<title>CatPhotoApp</title>
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lobster">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
@@ -10,18 +11,28 @@
 </head>
 <body>
 
+	<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper blue darken-2">
+				<a href="#" class="brand-logo">&nbsp;&nbsp;&nbsp;CatPhotoApp</a>
+				<a href="#" data-activates="mobile" class="button-collapse"><i class="fa fa-bars"></i></a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><a class="modal-trigger" href="#addCatModal">Add Cat Photo</a></li>
+				</ul>
+				<ul class="side-nav" id="mobile">
+					<li><a class="modal-trigger" href="#addCatModal">Add Cat Photo</a></li>
+	      </ul>
+			</div>
+		</nav>
+	</div>
+
+	<br>
+
 	<div class="container">
 
-		<h4>CatPhotoApp</h1>
-
-		<!-- Add Cat Modal Trigger -->
-		<a class="modal-trigger waves-effect waves-light btn" href="#addCatModal">Add Cat Photo</a>
-
-		<!-- Add Cat Modal Structure -->
 		<div id="addCatModal" class="modal">
 			<div class="modal-content">
 				<h4>Add Cat Photo</h4>
-				<i>“Meow” means “woof” in cat.</i>
 				<form>
 					<div class="row">
 						<div class="input-field col s12">
@@ -36,33 +47,28 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="input-field col l6 m6 s12">
-							<select>
-								<option value="" disabled selected>Choose your option</option>
-								<option value="Loving">Loving</option>
-								<option value="Lazy">Lazy</option>
-								<option value="Crazy">Crazy</option>
-							</select>
-							<label>Browser Select</label>
+						<div class="input-field col s6">
+							<input placeholder="Enter Tags" id="tags" type="text" required>
+							<label for="tags">Tags</label>
 						</div>
 						<div class="col l6 m6 s12" id="location">
 							<p>
-								<input class="with-gap" name="location" type="radio" id="indoor" checked/>
+								<input value="Indoor" name="location" type="radio" id="indoor" required/>
 								<label for="indoor">Indoor</label>
 							</p>
 							<p>
-								<input class="with-gap" name="location" type="radio" id="outdoor" />
+								<input value="Outdoor" name="location" type="radio" id="outdoor" />
 								<label for="outdoor">Outdoor</label>
 							</p>
 						</div>
 					</div>
 					<div class="row">
-						<button class="btn waves-effect waves-green green lighten-1 submit" type="submit" name="action">
+						<button class="btn waves-effect waves-blue blue darken-1 submit" type="submit" name="action">
 							<i class="fa fa-send"></i>
 							&nbsp;Submit
 						</button>
 					</div>
-				</form>  
+				</form>
 			</div>
 		</div>
 
@@ -72,7 +78,8 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-	<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/ui/live/0.4/firebase-ui-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.0.5/firebase.js"></script>
 	<script src="static/js/main.js"></script>
 </body>
 </html>

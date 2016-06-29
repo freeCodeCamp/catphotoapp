@@ -1,8 +1,30 @@
+.brand-logo {
+  font-family: "Lobster", cursive; }
+
+.button-collapse {
+  margin-left: 15px; }
+
+.avatar {
+  width: 64px;
+  border-radius: 50%;
+  padding: 10px; }
+
 .row {
   margin-bottom: 10px; }
+
+.like {
+  margin-right: 3px; }
+
+.card .card-image .card-title {
+  font-weight: bold;
+  font-size: 20px;
+  color: #000;
+  background: #eee;
+  opacity: 0.9;
+  padding: 8px; }
 
 #location p {
   margin: 0; }
 
 .submit {
-  margin-top: 10px; }
+  margin-left: 10px; }

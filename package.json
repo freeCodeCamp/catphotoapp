@@ -17,6 +17,7 @@
   "homepage": "https://github.com/atjonathan/catphotoapp#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-connect": "^4.1.0",
     "gulp-sass": "^2.3.2"
   }
 }
