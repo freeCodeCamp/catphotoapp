@@ -22,5 +22,7 @@
 
 This will get you running on `localhost:8080`
 
+Make your edits  in the `src` folder, gulp will compile and minify into the root and static folders.
+
 
 Thanks for contributing :tada:
