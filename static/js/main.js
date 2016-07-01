@@ -13,7 +13,7 @@ photosRef.once("value")
   .then(function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
       count++;
-      if (count % 4 === 1) {
+      if (count % 3 === 1) {
         $('.results').append('<div class="row">' + showData(childSnapshot.val()) + '</div>');
       } else {
         $('.results > .row:last').append(showData(childSnapshot.val()));
