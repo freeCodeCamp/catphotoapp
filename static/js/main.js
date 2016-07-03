@@ -52,7 +52,7 @@ function uploadCat(url){
         url: url,
         location: $('input[name="location"]:checked').val(),
         tags: $('#tags').val(),
-        likes: 0
+        likes: 1
       });
   };
 });
