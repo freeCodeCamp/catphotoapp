@@ -48,7 +48,7 @@ gulp.task('minify-css', ['styles'], function() {
 });
 
 gulp.task('default', ['connect'], function() {
-      gulp.watch('src/sass/**/*.scss', ['minfiy-css']);
+      gulp.watch('src/sass/**/*.scss', ['minify-css']);
       gulp.watch('src/js/**/*.js', ['compress']);
       gulp.watch('src/*.html', ['minify-html']);
 });

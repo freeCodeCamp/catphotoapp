@@ -31,3 +31,7 @@
 
 .modal {
   max-height: 100%; }
+
+.chip {
+  margin: 3px 2px;
+  color: #ffffff; }

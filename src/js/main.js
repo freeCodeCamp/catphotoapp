@@ -11,6 +11,9 @@ var count = 0; // Keeping track of number of images
 
 photosRef.once("value")
   .then(function(snapshot) {
+
+    console.log(snapshot);
+    
     snapshot.forEach(function(childSnapshot) {
       count++;
       if (count % 3 === 1) {
@@ -37,7 +40,9 @@ photosRef.once("value")
   });
 
 $('.submit').click(function () {
-   var url = $('#url').val();
+   var url = $('#url').val(),
+         tempTags = $('#tags').val(),
+         tags = tempTags.split(',');
 
           if(url.match(/(jpg|png|gif)$/i) && url.match(/^http/)){
             uploadCat(url); 
@@ -51,7 +56,7 @@ function uploadCat(url){
         title: $('#title').val(),
         url: url,
         location: $('input[name="location"]:checked').val(),
-        tags: $('#tags').val(),
+        tags: tags,
         likes: 1
       });
   };
@@ -76,8 +81,13 @@ function showData(photo) {
     html += '<span class="card-title">' + photo.title + '</span>';
     html += '</div><div class="card-content">';
     html += '<p>Location: ' + photo.location + '</p>';
-    html += '<p>Tags: ' + photo.tags + '</p>';
-    html += '</div>';
+    html += '<p>Tags: ';
+
+for(let t = 0; t <photo.tags.length; t++){
+    html += '<span class="chip blue darken-2">' + photo.tags[t] + '</span>';
+}
+
+    html += '</p></div>';
     html += `<div class="card-action">`
     html += `<a class="waves-effect waves-light waves-blue blue darken-3 btn like"><i class="fa fa-thumbs-up"></i> <span class="likes_number">${photo.likes}</span></a>`;
 //  html += `<a class="waves-effect waves-light waves-blue blue darken-3 btn delete"><i class="fa fa-trash"></i> Delete</a>`;
