@@ -28,3 +28,6 @@
 
 .submit {
   margin-left: 10px; }
+
+.modal {
+  max-height: 100%; }
