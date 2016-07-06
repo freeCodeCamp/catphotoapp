@@ -32,13 +32,14 @@ gulp.task('js-compress', ['js-fallback'], function (cb) {
 gulp.task('html-compress', function() {
   return gulp.src('src/*.html')
     .pipe(htmlmin({collapseWhitespace: true}))
-    .pipe(gulp.dest('./'))
+    .pipe(gulp.dest('./'));
 });
 
 gulp.task('styles', function() {
   gulp.src('src/sass/**/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('static/css/compiled'))
+    .pipe(gulp.dest('static/css/compiled'));
+
 });
 
 gulp.task('css-compress', ['styles'], function() {
