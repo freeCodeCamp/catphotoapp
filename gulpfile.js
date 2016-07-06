@@ -11,8 +11,8 @@ gulp.task('connect', ['minify-css', 'minify-html', 'compress'], function() {
   connect.server();
 });
 
-gulp.task('jsFallback', () => {
-  return gulp.src('src/js/*.js')
+gulp.task('jsFallback', function() {
+    gulp.src('src/js/*.js')
     .pipe(babel({
       presets: ['es2015']
     }))
