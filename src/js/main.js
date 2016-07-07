@@ -10,10 +10,7 @@ var photosRef = firebase.database().ref("photos").orderByKey();
 var count = 0; // Keeping track of number of images
 
 photosRef.once("value")
-  .then(function(snapshot) {
-
-    console.log(snapshot);
-    
+  .then(function(snapshot) {    
     snapshot.forEach(function(childSnapshot) {
       count++;
       if (count % 3 === 1) {
@@ -31,7 +28,7 @@ photosRef.once("value")
         });;
         writeLikes(childSnapshot.val().title);
       });
-      
+
       // $(`.${childSnapshot.val().title} .delete`).click(function() {
       //   deletePhoto(childSnapshot.val().title);
       //   $(`.${childSnapshot.val().title}`).remove();
@@ -45,7 +42,7 @@ $('.submit').click(function () {
          tags = tempTags.split(',');
 
           if(url.match(/(jpg|png|gif)$/i) && url.match(/^http/)){
-            uploadCat(url); 
+            uploadCat(url);
           }
           else {
             return alert("Please supply a URL which leads directly to a GIF, JPG or PNG file for upload.");

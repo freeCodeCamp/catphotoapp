@@ -7,21 +7,21 @@ var gulp = require('gulp'),
     cleanCSS = require('gulp-clean-css'),
     babel = require('gulp-babel');
 
-gulp.task('connect', ['minify-css', 'minify-html', 'compress'], function() {
+gulp.task('connect', ['css-compress', 'html-compress', 'js-compress'], function() {
   connect.server();
 });
 
-gulp.task('jsFallback', function() {
+gulp.task('js-fallback', function() {
     gulp.src('src/js/*.js')
     .pipe(babel({
       presets: ['es2015']
     }))
-    .pipe(gulp.dest('src/babel-output'));
+    .pipe(gulp.dest('src/js/babel'));
 });
 
-gulp.task('compress', ['jsFallback'], function (cb) {
+gulp.task('js-compress', ['js-fallback'], function (cb) {
   pump([
-        gulp.src('src/babel-output/*.js'),
+        gulp.src('src/js/babel/*.js'),
         uglify(),
         gulp.dest('static/js')
     ],
@@ -29,7 +29,7 @@ gulp.task('compress', ['jsFallback'], function (cb) {
   );
 });
 
-gulp.task('minify-html', function() {
+gulp.task('html-compress', function() {
   return gulp.src('src/*.html')
     .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(gulp.dest('./'))
@@ -38,17 +38,17 @@ gulp.task('minify-html', function() {
 gulp.task('styles', function() {
   gulp.src('src/sass/**/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('src/css'))
+    .pipe(gulp.dest('static/css/compiled'))
 });
 
-gulp.task('minify-css', ['styles'], function() {
-  return gulp.src('src/css/*.css')
+gulp.task('css-compress', ['styles'], function() {
+  return gulp.src('static/css/compiled/*.css')
     .pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(gulp.dest('static/css'));
 });
 
 gulp.task('default', ['connect'], function() {
-      gulp.watch('src/sass/**/*.scss', ['minify-css']);
-      gulp.watch('src/js/**/*.js', ['compress']);
-      gulp.watch('src/*.html', ['minify-html']);
+      gulp.watch('src/sass/**/*.scss', ['css-compress']);
+      gulp.watch('src/js/**/*.js', ['js-compress']);
+      gulp.watch('src/*.html', ['html-compress']);
 });
