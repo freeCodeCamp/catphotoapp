@@ -24,6 +24,16 @@
   margin-right: 3px;
 }
 
+.location {
+  margin-bottom: 5px;
+  i, p {
+    display: inline-block;
+  }
+  p {
+    margin-left: 5px !important;
+  }
+}
+
 .card .card-image .card-title {
 	font-weight: bold;
 	font-size: 20px;
@@ -33,23 +43,28 @@
 	padding: 8px;
 }
 
-// form for adding photos
-
-#location p {
-  margin: 0;
+.card .card-image img {
+  height: 275px;
+  max-height: 100%;
+  object-fit: cover;
 }
+
+.card-content {
+  height: 125px;
+  overflow-x: auto;
+}
+
+.chip {
+  margin: 3px 2px;
+  color: #fff;
+}
+
+// form for adding photos
 
 .submit {
   margin-left: 10px;
 }
 
-.modal{
-    max-height:100%;
-}
-
-// tags
-
-.chip{
-    margin:3px 2px;
-    color: #ffffff;
+.modal {
+  max-height: 100%;
 }
