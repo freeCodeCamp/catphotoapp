@@ -48,6 +48,6 @@ gulp.task('css-compress', ['styles'], function() {
 
 gulp.task('default', ['connect'], function() {
   gulp.watch('src/sass/**/*.scss', ['css-compress']);
-  gulp.watch('src/js/**/*.js', ['js-fallback', 'js-compress']);
+  gulp.watch('src/js/*.js', ['js-compress']);
   gulp.watch('src/*.html', ['html-compress']);
 });
