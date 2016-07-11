@@ -12,21 +12,19 @@ gulp.task('connect', ['css-compress', 'html-compress', 'js-compress'], function(
 });
 
 gulp.task('js-fallback', function() {
-    gulp.src('src/js/*.js')
-    .pipe(babel({
-      presets: ['es2015']
-    }))
-    .pipe(gulp.dest('src/js/babel'));
+  gulp.src('src/js/*.js')
+  .pipe(babel({
+    presets: ['es2015']
+  }))
+  .pipe(gulp.dest('src/js/babel'));
 });
 
 gulp.task('js-compress', ['js-fallback'], function (cb) {
   pump([
-        gulp.src('src/js/babel/*.js'),
-        uglify(),
-        gulp.dest('static/js')
-    ],
-    cb
-  );
+    gulp.src('src/js/babel/*.js'),
+    uglify(),
+    gulp.dest('static/js')
+  ], cb);
 });
 
 gulp.task('html-compress', function() {
@@ -49,7 +47,7 @@ gulp.task('css-compress', ['styles'], function() {
 });
 
 gulp.task('default', ['connect'], function() {
-      gulp.watch('src/sass/**/*.scss', ['css-compress']);
-      gulp.watch('src/js/**/*.js', ['js-compress']);
-      gulp.watch('src/*.html', ['html-compress']);
+  gulp.watch('src/sass/**/*.scss', ['css-compress']);
+  gulp.watch('src/js/**/*.js', ['js-fallback', 'js-compress']);
+  gulp.watch('src/*.html', ['html-compress']);
 });
