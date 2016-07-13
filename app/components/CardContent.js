@@ -7,7 +7,7 @@ import LikeButton from './LikeButton';
 class CardContent extends React.Component {
   render() {
     return (
-      <div class="card-content">
+      <div className="card-content">
         <CatTitle />
         <Tag />
         <LikeButton />
