@@ -16,7 +16,6 @@ class Results extends React.Component {
         <div className="results">
           <div className="row">
             {Object.keys(cats.cats).map(function(key) {
-              console.log(key, cats.cats[key]);
               return <ResultCard key={key} cat={cats.cats[key]} />;
             })}
           </div>
