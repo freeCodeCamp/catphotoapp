@@ -39,8 +39,7 @@ var gulp = require('gulp'),
     gulp.task('styles', function() {
       gulp.src('src/sass/**/*.scss')
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('static/css/compiled'))
-        .pipe(connect.reload());
+        .pipe(gulp.dest('static/css/compiled'));
 
     });
 
@@ -53,6 +52,7 @@ var gulp = require('gulp'),
 
     gulp.task('watch', function () {
     	gulp.watch(['./app/*.js'], ['scripts']);
+      gulp.watch(['./app/components/*.js'], ['scripts']);
       gulp.watch(['./src/sass/*.scss'], ['css-compress']);
       gulp.watch(['./src/*.html'], ['html-compress']);
     });
@@ -91,9 +91,8 @@ var gulp = require('gulp'),
     			.bundle()
     			.on('error', gutil.log)
     			.pipe(source('vendors.js'))
-    			.pipe(gulp.dest('./web/js/'))
-          .pipe(connect.reload());
-      	}
+    			.pipe(gulp.dest('./web/js/'));
+        }
       	if (!isProduction){
       		// make the dependencies external so they dont get bundled by the
     		// app bundler. Dependencies are already bundled in vendor.js for
