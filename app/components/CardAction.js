@@ -5,12 +5,23 @@ class CardAction extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: props.id,
       likes: props.likes
     }; this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
-    this.setState({likes: this.state.likes +1});
-  }
+    let catId = this.state.id,
+    localCats = Lockr.get('cats'),
+    index;
+    this.setState({likes: this.state.likes + 1});
+    index = localCats.findIndex(x => x.id === catId);
+    localCats[index].likes = this.state.likes + 1;
+    Lockr.flush();
+    localCats.forEach(function(localCat){
+      Lockr.sadd('cats', localCat);
+    });
+    }
+
   render() {
     return (
       <div className="card-action">
