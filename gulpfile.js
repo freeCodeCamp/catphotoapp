@@ -2,8 +2,6 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     uglify = require('gulp-uglify'),
     pump = require('pump'),
-    htmlmin = require('gulp-htmlmin'),
-    cleanCSS = require('gulp-clean-css'),
     browserify = require('browserify'),
     source = require('vinyl-source-stream'),
     gutil = require('gulp-util'),
@@ -14,7 +12,7 @@ var gulp = require('gulp'),
     // but include in your application deployment
     var dependencies = [
     	'react',
-      	'react-dom'
+      'react-dom'
     ];
     // keep a count of the times a task refires
     var scriptsCount = 0;
@@ -29,32 +27,16 @@ var gulp = require('gulp'),
     	bundleApp(true);
     });
 
-    gulp.task('html-compress', function() {
-      return gulp.src('src/*.html')
-        .pipe(htmlmin({collapseWhitespace: true}))
-        .pipe(gulp.dest('./'))
-        .pipe(connect.reload());
-    });
-
     gulp.task('styles', function() {
       gulp.src('src/sass/**/*.scss')
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('static/css/compiled'));
-
-    });
-
-    gulp.task('css-compress', ['styles'], function() {
-      return gulp.src('static/css/compiled/*.css')
-        .pipe(cleanCSS({compatibility: 'ie8'}))
-        .pipe(gulp.dest('static/css'))
-        .pipe(connect.reload());
+        .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+        .pipe(gulp.dest('public/css'));
     });
 
     gulp.task('watch', function () {
     	gulp.watch(['./app/*.js'], ['scripts']);
       gulp.watch(['./app/components/*.js'], ['scripts']);
-      gulp.watch(['./src/sass/*.scss'], ['css-compress']);
-      gulp.watch(['./src/*.html'], ['html-compress']);
+      gulp.watch(['./public/sass/*.scss'], ['styles']);
     });
 
     gulp.task('connect', function() {
@@ -66,7 +48,7 @@ var gulp = require('gulp'),
     });
 
     // When running 'gulp' on the terminal this task will fire.
-    gulp.task('default', ['connect','css-compress', 'html-compress', 'scripts','watch']);
+    gulp.task('default', ['connect', 'styles', 'scripts', 'watch']);
 
     // Private Functions
     // ----------------------------------------------------------------------------
@@ -91,7 +73,7 @@ var gulp = require('gulp'),
     			.bundle()
     			.on('error', gutil.log)
     			.pipe(source('vendors.js'))
-    			.pipe(gulp.dest('./web/js/'));
+    			.pipe(gulp.dest('./public/js/'));
         }
       	if (!isProduction){
       		// make the dependencies external so they dont get bundled by the
@@ -108,5 +90,5 @@ var gulp = require('gulp'),
     	    .bundle()
     	    .on('error',gutil.log)
     	    .pipe(source('bundle.js'))
-    	    .pipe(gulp.dest('./web/js/'));
+    	    .pipe(gulp.dest('./public/js/'));
     }

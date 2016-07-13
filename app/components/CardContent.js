@@ -1,16 +1,14 @@
 import React from 'react';
 import {render} from 'react-dom';
-import Tag from './Tag';
-import CatTitle from './CatTitle';
-import LikeButton from './LikeButton';
 
 class CardContent extends React.Component {
   render() {
     return (
       <div className="card-content">
-        <CatTitle />
-        <Tag />
-        <LikeButton />
+        <h5>{this.props.title}</h5>
+        {this.props.tags.map(function(tag, key) {
+          return <span className="chip blue darken-2" key={key} >{tag}</span>
+        })}
       </div>
     );
   }

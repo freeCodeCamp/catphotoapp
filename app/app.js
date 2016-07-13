@@ -9,9 +9,9 @@ class App extends React.Component {
   render(){
       return(
         <div>
-        <Navbar />
-        <Modal />
-        <Results />
+          <Navbar />
+          <Modal />
+          <Results />
         </div>
     );
   }
