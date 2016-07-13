@@ -22,18 +22,20 @@
 				<a href="#" class="brand-logo">&nbsp;&nbsp;&nbsp;CatPhotoApp</a>
 				<a href="#" data-activates="mobile" class="button-collapse"><i class="fa fa-bars"></i></a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><a href="#" id="flush">Flush</a></li>
 					<li><a class="modal-trigger" href="#addCatModal">Add Cat Photo</a></li>
 				</ul>
 				<ul class="side-nav" id="mobile">
+
 					<li><a class="modal-trigger" href="#addCatModal">Add Cat Photo</a></li>
-	      			</ul>
+	      </ul>
 			</div>
 		</nav>
 	</div>
 
 	<br>
 
-	<div class="container">
+	<div class="container"><!-- modal Container -->
 
 		<div id="addCatModal" class="modal">
 			<div class="modal-content">
@@ -42,13 +44,13 @@
 					<div class="row">
 						<div class="input-field col s12">
 							<input placeholder="Enter Title" id="title" type="text" required>
-							<label for="title" data-error="wrong" data-success="right">Title</label>
+							<label for="title" data-error="Cat title has been taken" data-success="Cat title is free to use">Title</label>
 						</div>
 					</div>
 					<div class="row">
 						<div class="input-field col s12">
-							<input placeholder="Enter URL" id="url" type="text" required>
-							<label for="url" data-error="wrong" data-success="right">Cat Photo URL</label>
+							<input placeholder="Enter URL" id="url" type="url" class="validate" required>
+							<label for="url" data-error="Please upload a GIF, PNG or JPG" data-success="Thats a URL for sure! I hope it ends in GIF, PNG or JPG...">Cat Photo URL</label>
 						</div>
 					</div>
 					<div class="row">
@@ -83,8 +85,7 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/ui/live/0.4/firebase-ui-auth.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/3.0.5/firebase.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lockr/0.8.4/lockr.min.js"></script>
 	<script src="static/js/main.js"></script>
 </body>
 </html>
