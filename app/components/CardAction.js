@@ -14,9 +14,12 @@ class CardAction extends React.Component {
     let catId = this.state.id,
     localCats = Lockr.get('cats'),
     index;
+    // update like button likes
     this.setState({likes: this.state.likes + 1});
+    // Find cat is local storage and increment likes
     index = localCats.findIndex(x => x.id === catId);
     localCats[index].likes = this.state.likes + 1;
+    // empty and update local storage
     Lockr.flush();
     localCats.forEach(function(localCat){
       Lockr.sadd('cats', localCat);

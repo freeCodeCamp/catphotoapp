@@ -5,7 +5,11 @@ import Modal from './components/Modal';
 import Results from './components/Results';
 import Footer from './components/Footer';
 
+
+
 class App extends React.Component {
+
+
   render(){
       return(
         <div>

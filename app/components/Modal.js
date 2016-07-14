@@ -2,13 +2,25 @@ import React from 'react';
 import {render} from 'react-dom';
 
 class Modal extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      newCat: Lockr.get('cats')
+    };
+    this.addUserCat = this.addUserCat.bind(this);
+  }
+  addUserCat(event){
+      event.preventDefault();
+      console.log(this.refs.title.value);
+    }
+
   render(){
       return(
         <div className="container">
       		<div id="addCatModal" className="modal">
       			<div className="modal-content">
       				<h4>Add Cat Photo</h4>
-      				<form>
+              <form onSubmit={this.addUserCat}>
       					<div className="row">
       						<div className="input-field col s12">
       							<input placeholder="Enter Title" ref="title" id="title" type="text" required />
