@@ -2,16 +2,20 @@ import React from 'react';
 import {render} from 'react-dom';
 
 class Modal extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      newCat: Lockr.get('cats')
-    };
-    this.addUserCat = this.addUserCat.bind(this);
-  }
-  addUserCat(event){
-      event.preventDefault();
-      console.log(this.refs.title.value);
+uploadedUserCat(e){
+  e.preventDefault();
+  let newCat =[{
+        id: this.refs.title.value.replace(/\s+/g, ''),
+        title: this.refs.title.value,
+        url: this.refs.url.value,
+        tags: this.refs.tags.value.split(','),
+        likes: 1
+        }];
+      this.props.addUserCat(newCat);
+      // Clear form fields
+      this.refs.title.value = '';
+      this.refs.url.value = '';
+      this.refs.tags.value = '';
     }
 
   render(){
@@ -20,7 +24,7 @@ class Modal extends React.Component {
       		<div id="addCatModal" className="modal">
       			<div className="modal-content">
       				<h4>Add Cat Photo</h4>
-              <form onSubmit={this.addUserCat}>
+              <form onSubmit={this.uploadedUserCat.bind(this)}>
       					<div className="row">
       						<div className="input-field col s12">
       							<input placeholder="Enter Title" ref="title" id="title" type="text" required />
@@ -38,19 +42,9 @@ class Modal extends React.Component {
       							<input placeholder="Separate tags with a comma" ref="tags" id="tags" type="text" required />
       							<label htmlFor="tags">Tags</label>
       						</div>
-      						<div className="col l6 m6 s12" id="location">
-      							<p>
-      								<input value="Indoor" name="location" type="radio" id="indoor" required />
-      								<label htmlFor="indoor">Indoor</label>
-      							</p>
-      							<p>
-      								<input value="Outdoor" name="location" type="radio" id="outdoor" />
-      								<label htmlFor="outdoor">Outdoor</label>
-      							</p>
-      						</div>
       					</div>
       					<div className="row">
-      						<button className="btn waves-effect waves-blue blue darken-1 submit" type="submit" name="action">
+      						<button id="submit-btn" className="btn waves-effect waves-blue blue darken-1 submit" type="submit" name="action">
       							<i className="fa fa-send"></i>
       							&nbsp;Submit
       						</button>
