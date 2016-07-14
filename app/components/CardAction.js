@@ -9,6 +9,7 @@ class CardAction extends React.Component {
       likes: props.likes
     }; this.handleClick = this.handleClick.bind(this);
   }
+
   handleClick() {
     let catId = this.state.id,
     localCats = Lockr.get('cats'),
@@ -20,12 +21,15 @@ class CardAction extends React.Component {
     localCats.forEach(function(localCat){
       Lockr.sadd('cats', localCat);
     });
-    }
+  }
 
   render() {
     return (
       <div className="card-action">
-        <button className="waves-effect waves-light waves-blue blue darken-3 btn like"
+        <a className="waves-effect waves-light waves-red red darken-3 btn" href={this.props.url} download={this.props.url}>
+          <i className="fa fa-download"></i>
+        </a>
+        <button className="waves-effect waves-light waves-blue blue darken-3 btn"
           onClick={this.handleClick}>
           <i className="fa fa-thumbs-up"></i>
           <span className="likes_number"> {this.state.likes}</span>

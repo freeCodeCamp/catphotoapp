@@ -14,7 +14,7 @@ class ResultCard extends React.Component {
         <div className="card hoverable">
           <CatImage src={cat.url} />
           <CardContent title={cat.title} tags={cat.tags} />
-          <CardAction likes={cat.likes} id={cat.id} />
+          <CardAction likes={cat.likes} url={cat.url} id={cat.id} />
         </div>
       </div>
     );
