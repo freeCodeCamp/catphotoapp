@@ -32,10 +32,9 @@ class Results extends React.Component {
     }else{
       filteredCats = preFilteredCats;
     }
-    console.log(preFilteredCats.length);
     return(
       <div className="container">
-        <input type="text" ref="search" onChange={this.searchByInput.bind(this)} value={this.props.search} />
+        <input type="text" placeholder="Search for cat tags here, or click on a cat tag..."ref="search" onChange={this.searchByInput.bind(this)} value={this.props.search} />
         <div className="results">
           <div className="row">
             {filteredCats.map((cat) => {

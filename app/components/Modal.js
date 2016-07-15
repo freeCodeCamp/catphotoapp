@@ -9,7 +9,6 @@ uploadedUserCat(e){
       formatTags = tags.forEach(function(tag){
         cleanTags.push(tag.trim());
       });
-    //  console.log(cleanTags);
   let newCat =[{
         id: this.refs.title.value.replace(/\s+/g, ''),
         title: this.refs.title.value,
