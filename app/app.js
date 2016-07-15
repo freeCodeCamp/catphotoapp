@@ -23,7 +23,8 @@ class App extends React.Component {
     }
     this.state = {
       cats: allCats,
-      search: ''
+      search: '',
+      validTitle: ''
     };
   }
   storeCats(cats){
@@ -43,13 +44,17 @@ class App extends React.Component {
     newSearch.toLowerCase();
     this.setState({search: newSearch});
   }
-
+  isTitleValid(valid){
+    this.setState({validTitle: valid});
+  }
     render(){
       return(
         <div>
           <Navbar />
-          <Modal addUserCat={this.addUserCat.bind(this)} />
-          <Results updateSearch={this.updateSearch.bind(this)} search={this.state.search} cats={this.state.cats} />
+          <Modal addUserCat={this.addUserCat.bind(this)}
+            cats={this.state.cats} />
+          <Results updateSearch={this.updateSearch.bind(this)}
+            search={this.state.search} cats={this.state.cats} />
           <Footer />
         </div>
     );

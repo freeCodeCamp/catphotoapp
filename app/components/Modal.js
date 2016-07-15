@@ -2,6 +2,25 @@ import React from 'react';
 import {render} from 'react-dom';
 
 class Modal extends React.Component {
+  constructor(){
+    super();
+    this.state ={
+      validTitle: "validate",
+      catId: ""
+    };
+  }
+  isTitleValid(){
+    let id = this.refs.title.value.replace(/\s+/g, ''),
+        existingIds = [];
+    this.props.cats.forEach((cat) =>{
+      existingIds.push(cat.id);
+    });
+    if(existingIds.indexOf(id) === -1){
+      this.setState({validTitle: "validate valid", catID: id});
+    }else{
+      this.setState({validTitle: "validate invalid"});
+    }
+  }
 uploadedUserCat(e){
   e.preventDefault();
   let tags = this.refs.tags.value.split(','),
@@ -9,10 +28,17 @@ uploadedUserCat(e){
       formatTags = tags.forEach(function(tag){
         cleanTags.push(tag.trim());
       });
+  let url = this.refs.url.value,
+      cleanUrl;
+  if(url.match(/(jpg|png|gif)$/i)){
+    cleanUrl = url;
+  }else{
+    cleanUrl = "public/img/replacementCat.jpg";
+  }
   let newCat =[{
-        id: this.refs.title.value.replace(/\s+/g, ''),
+        id: this.state.catId,
         title: this.refs.title.value,
-        url: this.refs.url.value,
+        url: cleanUrl,
         tags: cleanTags,
         likes: 1
         }];
@@ -24,6 +50,7 @@ uploadedUserCat(e){
     }
 
   render(){
+    console.log(this.state.validTitle);
       return(
         <div className="container">
       		<div id="addCatModal" className="modal">
@@ -32,7 +59,9 @@ uploadedUserCat(e){
               <form onSubmit={this.uploadedUserCat.bind(this)}>
       					<div className="row">
       						<div className="input-field col s12">
-      							<input placeholder="Enter Title" ref="title" id="title" type="text" required />
+      							<input className={this.state.validTitle}
+                      onChange={this.isTitleValid.bind(this)}
+                      placeholder="Enter Title" ref="title" id="title" type="text" required />
       							<label htmlFor="title" data-error="Cat title has been taken" data-success="Cat title is free to use">Title</label>
       						</div>
       					</div>
