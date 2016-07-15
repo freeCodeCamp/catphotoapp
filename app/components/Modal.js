@@ -4,11 +4,17 @@ import {render} from 'react-dom';
 class Modal extends React.Component {
 uploadedUserCat(e){
   e.preventDefault();
+  let tags = this.refs.tags.value.split(','),
+      cleanTags = [],
+      formatTags = tags.forEach(function(tag){
+        cleanTags.push(tag.trim());
+      });
+    //  console.log(cleanTags);
   let newCat =[{
         id: this.refs.title.value.replace(/\s+/g, ''),
         title: this.refs.title.value,
         url: this.refs.url.value,
-        tags: this.refs.tags.value.split(','),
+        tags: cleanTags,
         likes: 1
         }];
       this.props.addUserCat(newCat);

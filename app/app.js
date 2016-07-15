@@ -40,6 +40,7 @@ class App extends React.Component {
     this.storeCats(this.state.cats);
   }
   updateSearch(newSearch) {
+    newSearch.toLowerCase();
     this.setState({search: newSearch});
   }
 

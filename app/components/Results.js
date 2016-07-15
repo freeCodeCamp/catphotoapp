@@ -4,10 +4,10 @@ import ResultCard from './Results/ResultCard';
 
 class Results extends React.Component {
   searchByInput(){
-    this.props.updateSearch(this.refs.search.value);
+    this.props.updateSearch(this.refs.search.value.toLowerCase());
   }
   searchByTag(tag){
-    this.props.updateSearch(tag);
+    this.props.updateSearch(tag.toLowerCase());
   }
   render() {
 
@@ -19,13 +19,11 @@ class Results extends React.Component {
     }
 
     let preFilteredCats = this.props.cats.filter((cat) => {
-      let searchVal;
-      if(this.props.search === ''){
-        searchVal = ' ';
-      }else{
-        searchVal = this.props.search;
-      }
-        return cat.tags.includes(searchVal);
+      let lowerTags = [],
+          formatTags = cat.tags.forEach(function(tag){
+            lowerTags.push(tag.toLowerCase());
+          });
+        return lowerTags.includes(this.props.search);
       });
     let filteredCats;
 
