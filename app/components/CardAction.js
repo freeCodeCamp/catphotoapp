@@ -7,7 +7,8 @@ class CardAction extends React.Component {
     this.state = {
       id: props.id,
       likes: props.likes
-    }; this.handleClick = this.handleClick.bind(this);
+    };
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {

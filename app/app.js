@@ -22,7 +22,8 @@ class App extends React.Component {
       });
     }
     this.state = {
-      cats: allCats
+      cats: allCats,
+      search: ''
     };
   }
   storeCats(cats){
@@ -35,15 +36,19 @@ class App extends React.Component {
     this.setState({cats: newCat.concat(this.state.cats)});
     this.storeCats(this.state.cats);
   }
-    componentDidUpdate(prevState=this.state.cats) {
-      this.storeCats(this.state.cats);
-    }
+  componentDidUpdate(prevState=this.state.cats) {
+    this.storeCats(this.state.cats);
+  }
+  updateSearch(newSearch) {
+    this.setState({search: newSearch});
+  }
+
     render(){
       return(
         <div>
           <Navbar />
           <Modal addUserCat={this.addUserCat.bind(this)} />
-          <Results cats={this.state.cats} />
+          <Results updateSearch={this.updateSearch.bind(this)} search={this.state.search} cats={this.state.cats} />
           <Footer />
         </div>
     );

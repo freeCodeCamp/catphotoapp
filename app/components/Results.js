@@ -3,26 +3,45 @@ import {render} from 'react-dom';
 import ResultCard from './ResultCard';
 
 class Results extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      search: ''
-    }
+  searchByInput(){
+    this.props.updateSearch(this.refs.search.value);
   }
-  updateSearch(event) {
-    this.setState({search: event.target.value});
+  searchByTag(tag){
+    this.props.updateSearch(tag);
   }
   render() {
-    let filtered = this.props.cats.filter((cat) => {
-      return cat.tags.indexOf(this.state.search) !== -1;
-    });
+
+    let searchVal;
+    if(this.props.search === ''){
+      searchVal = ' ';
+    }else{
+      searchVal = this.props.search;
+    }
+
+    let preFilteredCats = this.props.cats.filter((cat) => {
+      let searchVal;
+      if(this.props.search === ''){
+        searchVal = ' ';
+      }else{
+        searchVal = this.props.search;
+      }
+        return cat.tags.includes(searchVal);
+      });
+    let filteredCats;
+
+    if(preFilteredCats.length === 0){
+      filteredCats = this.props.cats;
+    }else{
+      filteredCats = preFilteredCats;
+    }
+    console.log(preFilteredCats.length);
     return(
       <div className="container">
-        <input type="text" onChange={this.updateSearch.bind(this)} value={this.state.search} />
+        <input type="text" ref="search" onChange={this.searchByInput.bind(this)} value={this.props.search} />
         <div className="results">
           <div className="row">
-            {filtered.map((cat) => {
-              return <ResultCard key={cat.id} cat={cat} />
+            {filteredCats.map((cat) => {
+              return <ResultCard searchByTag={this.searchByTag.bind(this)} key={cat.id} cat={cat} />;
             })}
           </div>
         </div>
