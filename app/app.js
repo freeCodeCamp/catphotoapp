@@ -12,9 +12,9 @@ class App extends React.Component {
     // retrieve cats from local storage
     let local = Lockr.get('cats'),
         allCats;
-    if(local){
+    if (local ){
       allCats = local;
-    }else{
+    } else{
       // if not cats in local storage, put them there
       cats.cats.forEach(function(ourCat){
         Lockr.sadd('cats', ourCat);
@@ -23,19 +23,19 @@ class App extends React.Component {
     }
     this.state = {
       cats: allCats
-      };
+    };
   }
   storeCats(cats){
-      Lockr.flush();
+    Lockr.flush();
     cats.forEach(function(localCat){
       Lockr.sadd('cats', localCat);
     });
   }
-  addUserCat(newCat){
-      this.setState({cats: newCat.concat(this.state.cats)});
-      this.storeCats(this.state.cats);
-    }
-    componentDidUpdate(prevState=this.state.cats){
+  addUserCat(newCat) {
+    this.setState({cats: newCat.concat(this.state.cats)});
+    this.storeCats(this.state.cats);
+  }
+    componentDidUpdate(prevState=this.state.cats) {
       this.storeCats(this.state.cats);
     }
     render(){

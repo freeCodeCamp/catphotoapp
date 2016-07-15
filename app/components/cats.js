@@ -9,7 +9,7 @@ export let cats = {"cats":[
   {
     "id": "Cat-in-a-hat",
     "likes": 7,
-    "tags": ["Cute", "Hat", "Standing"],
+    "tags": ["Cute", "Hat", "Standing", ""],
     "title": "Cat-in-a-hat",
     "url": "https://s-media-cache-ak0.pinimg.com/564x/27/df/cc/27dfcc17a8cefe56c99277d63be0d815.jpg"
   },
