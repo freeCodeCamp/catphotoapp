@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
-import ResultCard from './ResultCard';
+import ResultCard from './Results/ResultCard';
 
 class Results extends React.Component {
   searchByInput(){

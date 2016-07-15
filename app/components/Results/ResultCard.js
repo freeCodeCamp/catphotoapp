@@ -1,9 +1,8 @@
 import React from 'react';
 import {render} from 'react-dom';
-import Results from './Results';
-import CatImage from './CatImage';
-import CardContent from './CardContent';
-import CardAction from './CardAction';
+import CatImage from './ResultCard/CatImage';
+import CardContent from './ResultCard/CardContent';
+import CardAction from './ResultCard/CardAction';
 
 class ResultCard extends React.Component {
   render() {
