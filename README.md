@@ -1,5 +1,8 @@
 # CatPhotoApp
 
-This is the hosting branch for [FreeCodeCamp](https://freecodecamp.com)'s CatPhotoApp.
+> Development repo for [FreeCodeCamp](https://freecodecamp.com)'s CatPhotoApp.
 
-It is live [here](https://atjonathan.github.io/catphotoapp).
+### Technologies
+
+- [React](https://facebook.github.io/react/)
+- [Lockr](https://github.com/tsironis/lockr)
