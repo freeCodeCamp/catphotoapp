@@ -38,11 +38,15 @@ class Results extends React.Component {
           placeholder="Search for cat tags here, or click on a cat tag..."
           ref="search" onChange={this.searchByInput.bind(this)}
           value={this.props.search}
-                                     />
+          />
         <div className="results">
           <div className="row">
             {filteredCats.map((cat) => {
-              return <ResultCard searchByTag={this.searchByTag.bind(this)} key={cat.id} cat={cat} />;
+              return <ResultCard
+                      searchByTag={this.searchByTag.bind(this)}
+                      key={cat.id}
+                      cat={cat}
+                      />;
             })}
           </div>
         </div>

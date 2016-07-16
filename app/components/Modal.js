@@ -6,9 +6,10 @@ class Modal extends React.Component {
     super();
     this.state ={
       validTitle: "validate",
-      catId: ""
+      catId: "NotUpdated"
     };
   }
+
   isTitleValid(){
     let id = this.refs.title.value.replace(/\s+/g, ''),
         existingIds = [];
@@ -16,7 +17,8 @@ class Modal extends React.Component {
       existingIds.push(cat.id);
     });
     if(existingIds.indexOf(id) === -1){
-      this.setState({validTitle: "validate valid", catID: id});
+      this.setState({catId: id});
+      this.setState({validTitle: "validate valid"});
     }else{
       this.setState({validTitle: "validate invalid"});
     }

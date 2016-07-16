@@ -23,8 +23,7 @@ class App extends React.Component {
     }
     this.state = {
       cats: allCats,
-      search: '',
-      validTitle: ''
+      search: ''
     };
   }
   storeCats(cats) {
@@ -35,8 +34,8 @@ class App extends React.Component {
   }
   addUserCat(newCat) {
     this.setState({cats: newCat.concat(this.state.cats)});
-    this.storeCats(this.state.cats);
   }
+  // Every time this.state.cats changes, update local storage
   componentDidUpdate(prevState=this.state.cats) {
     this.storeCats(this.state.cats);
   }
@@ -44,17 +43,19 @@ class App extends React.Component {
     newSearch.toLowerCase();
     this.setState({search: newSearch});
   }
-  isTitleValid(valid){
-    this.setState({validTitle: valid});
-  }
   render(){
     return(
       <div>
         <Navbar />
-        <Modal addUserCat={this.addUserCat.bind(this)}
-          cats={this.state.cats} />
-        <Results updateSearch={this.updateSearch.bind(this)}
-          search={this.state.search} cats={this.state.cats} />
+        <Modal
+          addUserCat={this.addUserCat.bind(this)}
+          cats={this.state.cats}
+          />
+        <Results
+          updateSearch={this.updateSearch.bind(this)}
+          search={this.state.search}
+          cats={this.state.cats}
+          />
         <Footer />
       </div>
   );
