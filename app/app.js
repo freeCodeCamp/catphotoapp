@@ -14,7 +14,7 @@ class App extends React.Component {
         allCats;
     if (local ){
       allCats = local;
-    } else{
+    } else {
       // if not cats in local storage, put them there
       cats.cats.forEach(function(ourCat){
         Lockr.sadd('cats', ourCat);
@@ -27,9 +27,9 @@ class App extends React.Component {
       validTitle: ''
     };
   }
-  storeCats(cats){
+  storeCats(cats) {
     Lockr.flush();
-    cats.forEach(function(localCat){
+    cats.forEach(function(localCat) {
       Lockr.sadd('cats', localCat);
     });
   }
@@ -47,17 +47,17 @@ class App extends React.Component {
   isTitleValid(valid){
     this.setState({validTitle: valid});
   }
-    render(){
-      return(
-        <div>
-          <Navbar />
-          <Modal addUserCat={this.addUserCat.bind(this)}
-            cats={this.state.cats} />
-          <Results updateSearch={this.updateSearch.bind(this)}
-            search={this.state.search} cats={this.state.cats} />
-          <Footer />
-        </div>
-    );
+  render(){
+    return(
+      <div>
+        <Navbar />
+        <Modal addUserCat={this.addUserCat.bind(this)}
+          cats={this.state.cats} />
+        <Results updateSearch={this.updateSearch.bind(this)}
+          search={this.state.search} cats={this.state.cats} />
+        <Footer />
+      </div>
+  );
   }
 }
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import {render} from 'react-dom';
-import CatImage from './ResultCard/CatImage';
-import CardContent from './ResultCard/CardContent';
-import CardAction from './ResultCard/CardAction';
+import CatImage from './CatImage';
+import CardContent from './CardContent';
+import CardAction from './CardAction';
 
 class ResultCard extends React.Component {
   render() {
@@ -13,7 +13,7 @@ class ResultCard extends React.Component {
         <div className="card hoverable">
           <CatImage src={cat.url} />
           <CardContent searchByTag={this.props.searchByTag} title={cat.title} tags={cat.tags} />
-          <CardAction likes={cat.likes} id={cat.id} />
+          <CardAction url={cat.url} likes={cat.likes} id={cat.id} />
         </div>
       </div>
     );

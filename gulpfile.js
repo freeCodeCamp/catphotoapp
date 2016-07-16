@@ -20,7 +20,7 @@ var gulp = require('gulp'),
     // Gulp tasks
     // ----------------------------------------------------------------------------
     gulp.task('scripts', function () {
-        bundleApp(false);
+      bundleApp(false);
     });
 
     gulp.task('deploy', function (){
@@ -35,7 +35,7 @@ var gulp = require('gulp'),
 
     gulp.task('watch', function () {
     	gulp.watch(['./app/*.js'], ['scripts']);
-      gulp.watch(['./app/components/*.js'], ['scripts']);
+      gulp.watch(['./app/components/**/*.js'], ['scripts']);
       gulp.watch(['./public/sass/*.scss'], ['styles']);
     });
 

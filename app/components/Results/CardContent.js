@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
-import Tag from './CardContent/Tag';
+import Tag from './Tag';
 
 class CardContent extends React.Component {
   tagClick(tag){
