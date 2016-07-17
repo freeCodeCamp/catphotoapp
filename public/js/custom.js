@@ -5,6 +5,8 @@ $(document).ready(function(){
   $("select").material_select();
   // close addCatModal on submit
   $("#submit-btn").on('click', function(){
-    $('#addCatModal').closeModal();
+    if($("#title").hasClass("valid") && $("#url").hasClass("valid")){
+      $("#addCatModal").closeModal();
+    }
   });
 });

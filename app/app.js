@@ -43,15 +43,19 @@ class App extends React.Component {
     newSearch.toLowerCase();
     this.setState({search: newSearch});
   }
+  clearSearch(){
+    this.setState({search: ""});
+  }
   render(){
     return(
       <div>
-        <Navbar />
+        <Navbar clearSearch={this.clearSearch.bind(this)} />
         <Modal
           addUserCat={this.addUserCat.bind(this)}
           cats={this.state.cats}
           />
         <Results
+          clearSearch={this.clearSearch.bind(this)}
           updateSearch={this.updateSearch.bind(this)}
           search={this.state.search}
           cats={this.state.cats}
