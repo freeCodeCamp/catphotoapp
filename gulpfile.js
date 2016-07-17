@@ -48,7 +48,7 @@ var gulp = require('gulp'),
     });
 
     // When running 'gulp' on the terminal this task will fire.
-    gulp.task('default', ['connect', 'styles', 'deploy', 'watch']);
+    gulp.task('default', ['connect', 'styles', 'scripts', 'watch']);
 
     // Private Functions
     // ----------------------------------------------------------------------------
