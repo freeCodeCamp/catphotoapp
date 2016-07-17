@@ -30,6 +30,14 @@ uploadedUserCat(e){
       formatTags = tags.forEach(function(tag){
         cleanTags.push(tag.trim());
       });
+      for(var a = 0; a<cleanTags.length; a++){
+        if(cleanTags[a] === "" ||
+        (cleanTags[a].match(/\s*/) &&
+        !cleanTags[a].match(/[\w\.\\,\/\#\!\?\£<\>\$\%\^\&\*\;\:\{\}\=\-\_\`\~\(\)]/i))){
+          cleanTags.splice(a, 1);
+          a=0;
+        }
+      }
   let url = this.refs.url.value,
       cleanUrl;
   if(url.match(/(jpg|png|gif)$/i)){
@@ -52,7 +60,6 @@ uploadedUserCat(e){
     }
 
   render(){
-    console.log(this.state.validTitle);
       return(
         <div className="container">
       		<div id="addCatModal" className="modal">
