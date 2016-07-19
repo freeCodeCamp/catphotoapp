@@ -22,10 +22,10 @@ class Results extends React.Component {
   render() {
     let preFilteredCats = this.props.cats.filter((cat) => {
     let lowerTags = [],
-        formatTags = cat.tags.forEach(function(tag){
+        formatTags = cat.tags.forEach((tag) => {
           lowerTags.push(tag.toLowerCase());
         });
-      return lowerTags.includes(this.props.search);
+    return (lowerTags.indexOf(this.props.search) !== -1);
     });
     let filteredCats;
 
