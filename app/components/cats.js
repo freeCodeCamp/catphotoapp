@@ -1,4 +1,5 @@
-export let cats = {"cats":[
+export let cats = {
+"cats": [
   {
     "id": "CamperCat",
     "likes": 3,

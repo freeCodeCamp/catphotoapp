@@ -1,8 +1,8 @@
 import React from 'react';
 import {render} from 'react-dom';
-import ResultCard from './Results/ResultCard';
+import Card from './Results/Card';
 
-class Results extends React.Component {
+export default class Results extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -12,7 +12,7 @@ class Results extends React.Component {
 
   searchByInput() {
     this.props.updateSearch(this.refs.search.value.toLowerCase());
-    if(this.props.search.length > 1){
+    if (this.props.search.length > 1){
       this.setState({animateClass: "animate"});
     }
   }
@@ -24,17 +24,18 @@ class Results extends React.Component {
 
   render() {
     let preFilteredCats = this.props.cats.filter((cat) => {
-    let lowerTags = [],
-        formatTags = cat.tags.forEach((tag) => {
-          lowerTags.push(tag.toLowerCase());
-        });
-    return (lowerTags.indexOf(this.props.search) !== -1);
+      let lowerTags = [];
+      let formatTags = cat.tags.forEach((tag) => {
+        lowerTags.push(tag.toLowerCase());
+      });
+      return (lowerTags.indexOf(this.props.search) !== -1);
     });
+
     let filteredCats;
 
-    if(preFilteredCats.length === 0){
+    if (preFilteredCats.length === 0) {
       filteredCats = this.props.cats;
-    }else{
+    } else {
       filteredCats = preFilteredCats;
     }
     return(
@@ -58,7 +59,7 @@ class Results extends React.Component {
         <div className="results">
           <div className="row">
             {filteredCats.map((cat) => {
-              return <ResultCard
+              return <Card
                       searchByTag={this.searchByTag.bind(this)}
                       key={cat.id}
                       cat={cat}
@@ -70,5 +71,3 @@ class Results extends React.Component {
     );
   }
 }
-
-export default Results;

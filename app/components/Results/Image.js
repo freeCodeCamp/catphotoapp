@@ -1,9 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 
-class CatImage extends React.Component {
-
-  // to initialize the material box for every image
+export default class image extends React.Component {
   componentDidMount() {
     $('.materialboxed').materialbox();
   }
@@ -16,4 +14,3 @@ class CatImage extends React.Component {
     );
   }
 }
-export default CatImage;

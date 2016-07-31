@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 
-class CardAction extends React.Component {
+export default class Action extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,7 +10,6 @@ class CardAction extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
   }
-
   handleClick() {
     let catId = this.state.id,
         localCats = Lockr.get('cats'),
@@ -26,7 +25,6 @@ class CardAction extends React.Component {
       Lockr.sadd('cats', localCat);
     });
   }
-
   render() {
     return (
       <div className="card-action">
@@ -42,4 +40,3 @@ class CardAction extends React.Component {
     );
   }
 }
-export default CardAction;

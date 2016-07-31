@@ -1,9 +1,9 @@
 import React from 'react';
 import {render} from 'react-dom';
 
-class Navbar extends React.Component {
-  render(){
-      return(
+export default class Navbar extends React.Component {
+  render() {
+    return (
       <nav>
         <div className="nav-wrapper blue darken-2">
           <a href="#" onClick={this.props.clearSearch} className="brand-logo">&nbsp;&nbsp;&nbsp;CatPhotoApp</a>
@@ -12,14 +12,10 @@ class Navbar extends React.Component {
             <li><a className="modal-trigger" href="#addCatModal">Add Cat Photo</a></li>
           </ul>
           <ul className="side-nav" id="mobile">
-
             <li><a className="modal-trigger" href="#addCatModal">Add Cat Photo</a></li>
           </ul>
         </div>
       </nav>
-
-
     );
   }
 }
-export default Navbar;
