@@ -3,22 +3,25 @@ import {render} from 'react-dom';
 import ResultCard from './Results/ResultCard';
 
 class Results extends React.Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
       animateClass: ""
     };
   }
-  searchByInput(){
+
+  searchByInput() {
     this.props.updateSearch(this.refs.search.value.toLowerCase());
     if(this.props.search.length > 1){
-    this.setState({animateClass: "animate"});
+      this.setState({animateClass: "animate"});
     }
   }
-  searchByTag(tag){
+
+  searchByTag(tag) {
     this.props.updateSearch(tag.toLowerCase());
     this.setState({animateClass: "animate"});
   }
+
   render() {
     let preFilteredCats = this.props.cats.filter((cat) => {
     let lowerTags = [],
@@ -65,7 +68,7 @@ class Results extends React.Component {
         </div>
       </div>
     );
-  }//
+  }
 }
 
 export default Results;

@@ -5,6 +5,7 @@ import CardContent from './CardContent';
 import CardAction from './CardAction';
 
 class ResultCard extends React.Component {
+
   render() {
     let cat = this.props.cat;
 
