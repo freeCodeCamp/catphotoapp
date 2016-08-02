@@ -23,6 +23,7 @@ class Modal extends React.Component {
       this.setState({validTitle: "validate invalid"});
     }
   }
+
 uploadedUserCat(e){
   e.preventDefault();
   let tags = this.refs.tags.value.split(','),
@@ -30,14 +31,16 @@ uploadedUserCat(e){
       formatTags = tags.forEach(function(tag){
         cleanTags.push(tag.trim());
       });
-      for(var a = 0; a<cleanTags.length; a++){
-        if(cleanTags[a] === "" ||
-        (cleanTags[a].match(/\s*/) &&
-        !cleanTags[a].match(/[\w\.\\,\/\#\!\?\£<\>\$\%\^\&\*\;\:\{\}\=\-\_\`\~\(\)]/i))){
-          cleanTags.splice(a, 1);
-          a=0;
-        }
-      }
+
+  for(var a = 0; a<cleanTags.length; a++){
+    if(cleanTags[a] === "" ||
+    (cleanTags[a].match(/\s*/) &&
+    !cleanTags[a].match(/[\w\.\\,\/\#\!\?\£<\>\$\%\^\&\*\;\:\{\}\=\-\_\`\~\(\)]/i))){
+      cleanTags.splice(a, 1);
+      a=0;
+    }
+  }
+
   let url = this.refs.url.value,
       cleanUrl;
   if(url.match(/(jpg|png|gif)$/i)){
@@ -57,7 +60,7 @@ uploadedUserCat(e){
       this.refs.title.value = '';
       this.refs.url.value = '';
       this.refs.tags.value = '';
-    }
+  }
 
   render(){
       return(

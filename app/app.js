@@ -12,7 +12,7 @@ class App extends React.Component {
     // retrieve cats from local storage
     let local = Lockr.get('cats'),
         allCats;
-    if (local ){
+    if (local){
       allCats = local;
     } else {
       // if not cats in local storage, put them there
@@ -26,26 +26,32 @@ class App extends React.Component {
       search: ''
     };
   }
+
   storeCats(cats) {
     Lockr.flush();
     cats.forEach(function(localCat) {
       Lockr.sadd('cats', localCat);
     });
   }
+
   addUserCat(newCat) {
     this.setState({cats: newCat.concat(this.state.cats)});
   }
+
   // Every time this.state.cats changes, update local storage
   componentDidUpdate(prevState=this.state.cats) {
     this.storeCats(this.state.cats);
   }
+
   updateSearch(newSearch) {
     newSearch.toLowerCase();
     this.setState({search: newSearch});
   }
+
   clearSearch(){
-    this.setState({search: ""});
+    this.updateSearch('');
   }
+
   render(){
     return(
       <div>
@@ -62,7 +68,7 @@ class App extends React.Component {
           />
         <Footer />
       </div>
-  );
+    );
   }
 }
 
