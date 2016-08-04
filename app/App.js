@@ -1,22 +1,34 @@
 import React from 'react';
 import {render} from 'react-dom';
 import {cats} from './components/cats';
-import Navbar from './components/Navbar';
+import Header from './components/Header';
 import Modal from './components/Modal';
 import Results from './components/Results';
 import Footer from './components/Footer';
 
 class App extends React.Component {
+  componentDidUpdate() {
+    $(".button-collapse").sideNav();
+    $(".modal-trigger").leanModal();
+    $("select").material_select();
+    // close addCatModal on submit
+    $("#submit-btn").on('click', function(){
+      if($("#title").hasClass("valid") && $("#url").hasClass("valid")){
+        $("#addCatModal").closeModal();
+      }
+    });
+  }
   constructor(){
     super();
     // retrieve cats from local storage
-    let local = Lockr.get('cats'),
-        allCats;
-    if (local){
+    let local = Lockr.get('cats');
+    let allCats;
+
+    if (local) {
       allCats = local;
     } else {
       // if not cats in local storage, put them there
-      cats.cats.forEach(function(ourCat){
+      cats.cats.forEach(function(ourCat) {
         Lockr.sadd('cats', ourCat);
         allCats = Lockr.get('cats');
       });
@@ -48,28 +60,29 @@ class App extends React.Component {
     this.setState({search: newSearch});
   }
 
-  clearSearch(){
+  clearSearch() {
     this.updateSearch('');
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div>
-        <Navbar clearSearch={this.clearSearch.bind(this)} />
+        <Header clearSearch={this.clearSearch.bind(this)} />
         <Modal
           addUserCat={this.addUserCat.bind(this)}
           cats={this.state.cats}
-          />
+        />
         <Results
           clearSearch={this.clearSearch.bind(this)}
           updateSearch={this.updateSearch.bind(this)}
           search={this.state.search}
           cats={this.state.cats}
-          />
+        />
         <Footer />
       </div>
     );
   }
 }
 
-render(<App />, document.getElementById('app'));
+const app = document.getElementById('app');
+render(<App />, app);
