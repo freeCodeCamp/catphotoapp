@@ -3,16 +3,16 @@
     opacity: 0;
     transform: rotate(0deg);
   }
-  80%{
+  80% {
     transform: rotate(-45deg);
   }
-  100%{
+  100% {
     opacity: 1;
     transform: rotate(-45deg);
   }
 }
 .animate{
-  animation: searchIcon 500ms ease-in-out 0s 1 alternate forwards running
+  animation: searchIcon 200ms ease-in-out 0s 1 alternate forwards running
 }
 
 // navbar

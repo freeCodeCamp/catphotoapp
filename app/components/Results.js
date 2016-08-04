@@ -12,8 +12,11 @@ export default class Results extends React.Component {
 
   searchByInput() {
     this.props.updateSearch(this.refs.search.value.toLowerCase());
-    if (this.props.search.length > 1){
+    console.log(this.props.search.length);
+    if (this.props.search.length > 1) {
       this.setState({animateClass: "animate"});
+    } else {
+      this.setState({animateClass: ""});
     }
   }
 
@@ -46,24 +49,27 @@ export default class Results extends React.Component {
               className={"clear-icon prefix " + (this.state.animateClass)}
               src="public/img/icons/ic_loupe_black_24px.svg"
               onClick={this.props.clearSearch}
-              />
+            />
             <input type="text"
               placeholder="Search for cat tags here, or click on a cat tag..."
               ref="search"
               id="searchBar"
-              onChange={this.searchByInput.bind(this)}
+              onInput={this.searchByInput.bind(this)}
+              onKeyDown={this.searchByInput.bind(this)}
               value={this.props.search}
-              />
+            />
           </div>
         </div>
         <div className="results">
           <div className="row">
-            {filteredCats.map((cat) => {
-              return <Card
-                      searchByTag={this.searchByTag.bind(this)}
-                      key={cat.id}
-                      cat={cat}
-                      />;
+            {filteredCats.map(cat => {
+              return (
+                <Card
+                  searchByTag={this.searchByTag.bind(this)}
+                  key={cat.id}
+                  cat={cat}
+                />
+              );
             })}
           </div>
         </div>

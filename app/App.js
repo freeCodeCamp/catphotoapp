@@ -60,7 +60,7 @@ class App extends React.Component {
     this.setState({search: newSearch});
   }
 
-  clearSearch(){
+  clearSearch() {
     this.updateSearch('');
   }
 
