@@ -1,4 +1,4 @@
-export let cats = {
+export default const cats = {
 "cats": [
   {
     "id": "CamperCat",

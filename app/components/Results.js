@@ -6,29 +6,28 @@ export default class Results extends React.Component {
   constructor() {
     super();
     this.state = {
-      animateClass: ""
+      animateClass: '',
     };
   }
 
   searchByInput() {
-    this.props.updateSearch(this.refs.search.value.toLowerCase());
-    console.log(this.props.search.length);
+    this.props.updateSearch(this.search.value.toLowerCase());
     if (this.props.search.length > 1) {
-      this.setState({animateClass: "animate"});
+      this.setState({animateClass: 'animate'});
     } else {
-      this.setState({animateClass: ""});
+      this.setState({animateClass: ''});
     }
   }
 
   searchByTag(tag) {
     this.props.updateSearch(tag.toLowerCase());
-    this.setState({animateClass: "animate"});
+    this.setState({animateClass: 'animate'});
   }
 
   render() {
-    let preFilteredCats = this.props.cats.filter((cat) => {
-      let lowerTags = [];
-      let formatTags = cat.tags.forEach((tag) => {
+    const preFilteredCats = this.props.cats.filter((cat) => {
+      const lowerTags = [];
+      const formatTags = cat.tags.forEach((tag) => { // eslint-disable-line no-unused-vars
         lowerTags.push(tag.toLowerCase());
       });
       return (lowerTags.indexOf(this.props.search) !== -1);
@@ -41,18 +40,20 @@ export default class Results extends React.Component {
     } else {
       filteredCats = preFilteredCats;
     }
-    return(
+    return (
       <div className="container">
         <div className="row">
           <div className="input-field col s12">
             <img
-              className={"clear-icon prefix " + (this.state.animateClass)}
+              className={'clear-icon prefix ' + this.state.animateClass} // eslint-disable-line prefer-template
               src="public/img/icons/ic_loupe_black_24px.svg"
               onClick={this.props.clearSearch}
+              role="presentation"
             />
-            <input type="text"
+            <input
+              type="text"
               placeholder="Search for cat tags here, or click on a cat tag..."
-              ref="search"
+              ref={(x) => { this.search = x; }}
               id="searchBar"
               onInput={this.searchByInput.bind(this)}
               onKeyDown={this.searchByInput.bind(this)}
