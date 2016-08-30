@@ -78,3 +78,10 @@ export default class Results extends React.Component {
     );
   }
 }
+
+Results.propTypes = {
+  updateSearch: React.PropTypes.func,
+  search: React.PropTypes.string,
+  clearSearch: React.PropTypes.func,
+  cats: React.PropTypes.array,
+};

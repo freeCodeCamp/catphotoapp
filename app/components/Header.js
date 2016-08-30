@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 
-export default class Navbar extends React.Component {
+export default class Header extends React.Component {
   render() {
     return (
       <nav>
@@ -19,3 +19,7 @@ export default class Navbar extends React.Component {
     );
   }
 }
+
+Header.propTypes = {
+  clearSearch: React.PropTypes.func,
+};

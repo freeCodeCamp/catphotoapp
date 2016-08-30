@@ -47,3 +47,9 @@ export default class Action extends React.Component {
     );
   }
 }
+
+Action.propTypes = {
+  id: React.PropTypes.string,
+  likes: React.PropTypes.number,
+  url: React.PropTypes.string,
+};

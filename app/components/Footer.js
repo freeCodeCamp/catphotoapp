@@ -2,7 +2,6 @@ import React from 'react';
 import {render} from 'react-dom';
 
 export default class Footer extends React.Component {
-
   render() {
     return (
       <footer className="page-footer blue darken-2">

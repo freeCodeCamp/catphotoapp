@@ -2,7 +2,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import Tag from './Tag';
 
-export default class CardContent extends React.Component {
+export default class Content extends React.Component {
   tagClick(tag) {
     this.props.searchByTag(tag);
   }
@@ -17,3 +17,9 @@ export default class CardContent extends React.Component {
     );
   }
 }
+
+Content.propTypes = {
+  searchByTag: React.PropTypes.func,
+  tags: React.PropTypes.array,
+  title: React.PropTypes.string,
+};

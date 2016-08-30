@@ -128,3 +128,8 @@ export default class Modal extends React.Component {
     );
   }
 }
+
+Modal.propTypes = {
+  cats: React.PropTypes.array,
+  addUserCat: React.PropTypes.func,
+};

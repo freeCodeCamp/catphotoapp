@@ -18,3 +18,8 @@ export default class Card extends React.Component {
     );
   }
 }
+
+Card.propTypes = {
+  searchByTag: React.PropTypes.func,
+  cat: React.PropTypes.object,
+};
