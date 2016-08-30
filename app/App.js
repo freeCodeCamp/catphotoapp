@@ -1,3 +1,4 @@
+/* global Lockr, document */
 import React from 'react';
 import {render} from 'react-dom';
 import {cats} from './components/cats';
@@ -7,52 +8,41 @@ import Results from './components/Results';
 import Footer from './components/Footer';
 
 class App extends React.Component {
-  componentDidUpdate() {
-    $(".button-collapse").sideNav();
-    $(".modal-trigger").leanModal();
-    $("select").material_select();
-    // close addCatModal on submit
-    $("#submit-btn").on('click', function(){
-      if($("#title").hasClass("valid") && $("#url").hasClass("valid")){
-        $("#addCatModal").closeModal();
-      }
-    });
-  }
-  constructor(){
+  constructor() {
     super();
     // retrieve cats from local storage
-    let local = Lockr.get('cats');
+    const local = Lockr.get('cats');
     let allCats;
 
     if (local) {
       allCats = local;
     } else {
       // if not cats in local storage, put them there
-      cats.cats.forEach(function(ourCat) {
+      cats.cats.forEach(ourCat => {
         Lockr.sadd('cats', ourCat);
         allCats = Lockr.get('cats');
       });
     }
     this.state = {
       cats: allCats,
-      search: ''
+      search: '',
     };
   }
 
-  storeCats(cats) {
+  // Every time this.state.cats changes, update local storage
+  componentDidUpdate(prevState = this.state.cats) { // eslint-disable-line no-unused-vars
+    this.storeCats(this.state.cats);
+  }
+
+  storeCats(items) {
     Lockr.flush();
-    cats.forEach(function(localCat) {
+    items.forEach(localCat => {
       Lockr.sadd('cats', localCat);
     });
   }
 
   addUserCat(newCat) {
     this.setState({cats: newCat.concat(this.state.cats)});
-  }
-
-  // Every time this.state.cats changes, update local storage
-  componentDidUpdate(prevState=this.state.cats) {
-    this.storeCats(this.state.cats);
   }
 
   updateSearch(newSearch) {

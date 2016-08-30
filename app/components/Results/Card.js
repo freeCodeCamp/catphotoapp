@@ -4,13 +4,13 @@ import Image from './Image';
 import Content from './Content';
 import Action from './Action';
 
-export default class card extends React.Component {
+export default class Card extends React.Component {
   render() {
-    let { cat, searchByTag } = this.props;
+    const {cat, searchByTag} = this.props;
     return (
       <div className="col s3 m4 s12">
         <div className="card hoverable">
-          <Image src={cat.url} />
+          <Image alt={cat.title} src={cat.url} />
           <Content searchByTag={searchByTag} title={cat.title} tags={cat.tags} />
           <Action url={cat.url} likes={cat.likes} id={cat.id} />
         </div>
@@ -18,3 +18,8 @@ export default class card extends React.Component {
     );
   }
 }
+
+Card.propTypes = {
+  searchByTag: React.PropTypes.func,
+  cat: React.PropTypes.object,
+};

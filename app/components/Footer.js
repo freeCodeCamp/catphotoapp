@@ -2,7 +2,6 @@ import React from 'react';
 import {render} from 'react-dom';
 
 export default class Footer extends React.Component {
-
   render() {
     return (
       <footer className="page-footer blue darken-2">
@@ -11,7 +10,16 @@ export default class Footer extends React.Component {
             <h5 className="white-text">CatPhotoApp</h5>
           </div>
           <div className="row">
-            <p className="grey-text text-lighten-4">CatPhotoApp has been created to form part of the <a href="https://freecodecamp.com" target="_blank">Free Code Camp</a> curriculum.</p>
+            <p
+              className="grey-text text-lighten-4"
+            >
+			CatPhotoApp has been created to form part of the
+              <a
+                href="https://freecodecamp.com"
+                rel="noopener noreferrer"
+                target="_blank"
+              > Free Code Camp
+              </a> curriculum.</p>
           </div>
         </div>
         <div className="footer-copyright">

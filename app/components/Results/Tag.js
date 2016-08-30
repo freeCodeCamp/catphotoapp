@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 
-class Tag extends React.Component {
+export default class Tag extends React.Component {
   getValue() {
     this.props.tagClick(this.props.tag);
   }
@@ -11,4 +11,8 @@ class Tag extends React.Component {
     );
   }
 }
-export default Tag;
+
+Tag.propTypes = {
+  tag: React.PropTypes.string,
+  tagClick: React.PropTypes.func,
+};
