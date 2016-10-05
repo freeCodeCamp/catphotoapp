@@ -20,7 +20,7 @@ function bundleApp(isProduction) {
   scriptsCount++;
 
   const appBundler = browserify({
-    entries: './app/app.js',
+    entries: './app/App.js',
     debug: true,
   });
 
@@ -65,7 +65,7 @@ gulp.task('styles', () => {
 
 gulp.task('watch', () => {
   gulp.watch(['./app/*.js'], ['scripts']);
-  gulp.watch(['./app/components/**/*.js'], ['scripts']);
+  gulp.watch(['./app/**/*.js'], ['scripts']);
   gulp.watch(['./public/sass/*.scss'], ['styles']);
 });
 
@@ -78,4 +78,4 @@ gulp.task('connect', () => {
 });
 
 // When running 'gulp' on the terminal this task will fire.
-gulp.task('default', ['connect', 'styles', 'scripts', 'watch']);
+gulp.task('default', ['connect', 'styles', 'deploy', 'watch']);
