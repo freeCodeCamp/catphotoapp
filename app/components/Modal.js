@@ -26,9 +26,10 @@ export default class Modal extends React.Component {
 
   uploadedUserCat(e) {
     e.preventDefault();
-    const tags = this.tags.value.split;
+    const tags = this.tags.value.split(',');
     const cleanTags = [];
-    formatTags = tags.forEach((tag) => { // eslint-disable-line no-undef
+
+    tags.forEach((tag) => { // eslint-disable-line no-undef
       cleanTags.push(tag.trim());
     });
     for (let a = 0; a < cleanTags.length; a++) {

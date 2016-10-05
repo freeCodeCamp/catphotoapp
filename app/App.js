@@ -1,7 +1,7 @@
 /* global Lockr, document */
 import React from 'react';
 import {render} from 'react-dom';
-import {cats} from './components/cats';
+import cats from './components/cats';
 import Header from './components/Header';
 import Modal from './components/Modal';
 import Results from './components/Results';
