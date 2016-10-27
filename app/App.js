@@ -10,39 +10,53 @@ import Footer from './components/Footer';
 class App extends React.Component {
   constructor() {
     super();
-    // retrieve cats from local storage
-    const local = Lockr.get('cats');
-    let allCats;
 
-    if (local) {
-      allCats = local;
+    const localCustomCats = Lockr.get('customCats');
+    const localDefaultCats = Lockr.get('defaultCats');
+
+    if (localDefaultCats === cats.defaultCats) {
+      this.defaultCats = localDefaultCats;
     } else {
-      // if not cats in local storage, put them there
-      cats.cats.forEach(ourCat => {
-        Lockr.sadd('cats', ourCat);
-        allCats = Lockr.get('cats');
+      Lockr.flush();
+      cats.defaultCats.forEach(ourCat => {
+        Lockr.sadd('defaultCats', ourCat);
       });
+      this.defaultCats = Lockr.get('defaultCats');
     }
+
+    if (localCustomCats) {
+      localCustomCats.forEach(customCat => {
+        Lockr.sadd('customCats', customCat);
+      });
+      this.customCats = Lockr.get('customCats');
+    } else {
+      this.customCats = [];
+    }
+
     this.state = {
-      cats: allCats,
+      defaultCats: this.defaultCats,
+      customCats: this.customCats,
       search: '',
     };
   }
 
-  // Every time this.state.cats changes, update local storage
-  componentDidUpdate(prevState = this.state.cats) { // eslint-disable-line no-unused-vars
-    this.storeCats(this.state.cats);
+  // Every time this.state.customCats changes, update local storage
+  componentDidUpdate(prevState = this.state.customCats) { // eslint-disable-line no-unused-vars
+    this.storeCats(this.state.customCats);
   }
 
   storeCats(items) {
     Lockr.flush();
+    cats.defaultCats.forEach(ourCat => {
+      Lockr.sadd('defaultCats', ourCat);
+    });
     items.forEach(localCat => {
-      Lockr.sadd('cats', localCat);
+      Lockr.sadd('customCats', localCat);
     });
   }
 
   addUserCat(newCat) {
-    this.setState({cats: newCat.concat(this.state.cats)});
+    this.setState({customCats: newCat.concat(this.state.customCats)});
   }
 
   updateSearch(newSearch) {
@@ -60,13 +74,15 @@ class App extends React.Component {
         <Header clearSearch={this.clearSearch.bind(this)} />
         <Modal
           addUserCat={this.addUserCat.bind(this)}
-          cats={this.state.cats}
+          defaultCats={this.state.defaultCats}
+          customCats={this.state.customCats}
         />
         <Results
           clearSearch={this.clearSearch.bind(this)}
           updateSearch={this.updateSearch.bind(this)}
           search={this.state.search}
-          cats={this.state.cats}
+          defaultCats={this.state.defaultCats}
+          customCats={this.state.customCats}
         />
         <Footer />
       </div>

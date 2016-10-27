@@ -11,21 +11,51 @@ export default class Action extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
   }
+
   handleClick() {
     const catId = this.state.id;
-    const localCats = Lockr.get('cats');
-    let index;
-    // update like button likes
-    this.setState({likes: this.state.likes + 1});
-    // Find cat is local storage and increment likes
-    index = localCats.findIndex(x => x.id === catId); // eslint-disable-line prefer-const
-    localCats[index].likes = this.state.likes + 1;
-    // empty and update local storage
-    Lockr.flush();
-    localCats.forEach((localCat) => {
-      Lockr.sadd('cats', localCat);
+
+    const defaultCats = Lockr.get('defaultCats');
+    const customCats = Lockr.get('customCats');
+    let isDefault = false;
+
+    defaultCats.forEach(localCat => {
+      if (localCat.id === catId) {
+        isDefault = true;
+      }
     });
+
+    if (isDefault) {
+      // Find cat is local storage and increment likes
+      const index = defaultCats.findIndex(x => x.id === catId);
+      defaultCats[index].likes = this.state.likes + 1;
+      Lockr.flush();
+      defaultCats.forEach(cat => {
+        Lockr.sadd('defaultCats', cat);
+      });
+
+      if (customCats) {
+        customCats.forEach(cat => {
+          Lockr.sadd('customCats', cat);
+        });
+      }
+    } else {
+      // Find cat is local storage and increment likes
+      const index = customCats.findIndex(x => x.id === catId);
+      customCats[index].likes = this.state.likes + 1;
+      Lockr.flush();
+      customCats.forEach(cat => {
+        Lockr.sadd('customCats', cat);
+      });
+      defaultCats.forEach(cat => {
+        Lockr.sadd('defaultCats', cat);
+      });
+    }
+
+    // update like button
+    this.setState({likes: this.state.likes + 1});
   }
+
   render() {
     return (
       <div className="card-action">
