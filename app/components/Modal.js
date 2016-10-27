@@ -13,9 +13,16 @@ export default class Modal extends React.Component {
   isTitleValid() {
     const id = this.title.value.replace(/\s+/g, '');
     const existingIds = [];
-    this.props.cats.forEach((cat) => {
+
+    this.props.defaultCats.forEach(cat => {
       existingIds.push(cat.id);
     });
+    if (this.props.customCats) {
+      this.props.customCats.forEach(cat => {
+        existingIds.push(cat.id);
+      });
+    }
+
     if (existingIds.indexOf(id) === -1) {
       this.setState({catId: id});
       this.setState({validTitle: 'validate valid'});
@@ -131,6 +138,7 @@ export default class Modal extends React.Component {
 }
 
 Modal.propTypes = {
-  cats: React.PropTypes.array,
+  defaultCats: React.PropTypes.array,
+  customCats: React.PropTypes.array,
   addUserCat: React.PropTypes.func,
 };

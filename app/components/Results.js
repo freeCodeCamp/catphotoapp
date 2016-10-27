@@ -25,21 +25,42 @@ export default class Results extends React.Component {
   }
 
   render() {
-    const preFilteredCats = this.props.cats.filter((cat) => {
+    this.preFilteredDefaultCats = this.props.defaultCats.filter(cat => {
       const lowerTags = [];
-      const formatTags = cat.tags.forEach((tag) => { // eslint-disable-line no-unused-vars
+      cat.tags.forEach((tag) => {
         lowerTags.push(tag.toLowerCase());
       });
       return (lowerTags.indexOf(this.props.search) !== -1);
     });
 
-    let filteredCats;
+    let filteredDefaultCats;
 
-    if (preFilteredCats.length === 0) {
-      filteredCats = this.props.cats;
+    if (this.preFilteredDefaultCats.length === 0) {
+      filteredDefaultCats = this.props.defaultCats;
     } else {
-      filteredCats = preFilteredCats;
+      filteredDefaultCats = this.preFilteredDefaultCats;
     }
+
+    if (this.props.customCats) {
+      this.preFilteredCustomCats = this.props.customCats.filter(cat => {
+        const lowerTags = [];
+        cat.tags.forEach(tag => {
+          lowerTags.push(tag.toLowerCase());
+        });
+        return (lowerTags.indexOf(this.props.search) !== -1);
+      });
+    }
+
+    let filteredCustomCats;
+
+    if (!this.props.customCats) {
+      filteredCustomCats = [];
+    } else if (this.preFilteredCustomCats.length === 0) {
+      filteredCustomCats = this.props.customCats;
+    } else {
+      filteredCustomCats = this.preFilteredCustomCats;
+    }
+
     return (
       <div className="container">
         <div className="row">
@@ -63,7 +84,16 @@ export default class Results extends React.Component {
         </div>
         <div className="results">
           <div className="row">
-            {filteredCats.map(cat => {
+            {filteredDefaultCats.map(cat => {
+              return (
+                <Card
+                  searchByTag={this.searchByTag.bind(this)}
+                  key={cat.id}
+                  cat={cat}
+                />
+              );
+            })}
+            {filteredCustomCats.map(cat => {
               return (
                 <Card
                   searchByTag={this.searchByTag.bind(this)}
@@ -83,5 +113,6 @@ Results.propTypes = {
   updateSearch: React.PropTypes.func,
   search: React.PropTypes.string,
   clearSearch: React.PropTypes.func,
-  cats: React.PropTypes.array,
+  customCats: React.PropTypes.array,
+  defaultCats: React.PropTypes.array,
 };
