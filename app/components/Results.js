@@ -11,8 +11,8 @@ export default class Results extends React.Component {
   }
 
   searchByInput() {
-    this.props.updateSearch(this.search.value.toLowerCase());
-    if (this.props.search.length > 1) {
+    this.props.actions.updateSearch(this.search.value.toLowerCase());
+    if (this.props.photos.search > 1) {
       this.setState({animateClass: 'animate'});
     } else {
       this.setState({animateClass: ''});
@@ -20,43 +20,43 @@ export default class Results extends React.Component {
   }
 
   searchByTag(tag) {
-    this.props.updateSearch(tag.toLowerCase());
+    this.props.actions.updateSearch(tag.toLowerCase());
     this.setState({animateClass: 'animate'});
   }
 
   render() {
-    this.preFilteredDefaultCats = this.props.defaultCats.filter(cat => {
+    this.preFilteredDefaultCats = this.props.photos.defaultCats.filter(cat => {
       const lowerTags = [];
       cat.tags.forEach((tag) => {
         lowerTags.push(tag.toLowerCase());
       });
-      return (lowerTags.indexOf(this.props.search) !== -1);
+      return (lowerTags.indexOf(this.props.photos.search) !== -1);
     });
 
     let filteredDefaultCats;
 
     if (this.preFilteredDefaultCats.length === 0) {
-      filteredDefaultCats = this.props.defaultCats;
+      filteredDefaultCats = this.props.photos.defaultCats;
     } else {
       filteredDefaultCats = this.preFilteredDefaultCats;
     }
 
-    if (this.props.customCats) {
-      this.preFilteredCustomCats = this.props.customCats.filter(cat => {
+    if (this.props.photos.customCats) {
+      this.preFilteredCustomCats = this.props.photos.customCats.filter(cat => {
         const lowerTags = [];
         cat.tags.forEach(tag => {
           lowerTags.push(tag.toLowerCase());
         });
-        return (lowerTags.indexOf(this.props.search) !== -1);
+        return (lowerTags.indexOf(this.props.photos.search) !== -1);
       });
     }
 
     let filteredCustomCats;
 
-    if (!this.props.customCats) {
+    if (!this.props.photos.customCats) {
       filteredCustomCats = [];
     } else if (this.preFilteredCustomCats.length === 0) {
-      filteredCustomCats = this.props.customCats;
+      filteredCustomCats = this.props.photos.customCats;
     } else {
       filteredCustomCats = this.preFilteredCustomCats;
     }
@@ -78,7 +78,7 @@ export default class Results extends React.Component {
               id="searchBar"
               onInput={this.searchByInput.bind(this)}
               onKeyDown={this.searchByInput.bind(this)}
-              value={this.props.search}
+              value={this.props.photos.search}
             />
           </div>
         </div>
@@ -113,6 +113,6 @@ Results.propTypes = {
   updateSearch: React.PropTypes.func,
   search: React.PropTypes.string,
   clearSearch: React.PropTypes.func,
-  customCats: React.PropTypes.array,
-  defaultCats: React.PropTypes.array,
+  actions: React.PropTypes.object,
+  photos: React.PropTypes.object,
 };

@@ -1,0 +1,2 @@
+export const ADD_CUSTOM_CAT = 'ADD_CUSTOM_CAT';
+export const UPDATE_SEARCH = 'UPDATE_SEARCH';
