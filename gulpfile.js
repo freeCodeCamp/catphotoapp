@@ -20,7 +20,7 @@ function bundleApp(isProduction) {
   scriptsCount++;
 
   const appBundler = browserify({
-    entries: './app/App.js',
+    entries: './app/index.js',
     debug: true,
   });
 
